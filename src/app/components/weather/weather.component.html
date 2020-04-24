@@ -1,0 +1,52 @@
+<ion-content>
+  <ion-searchbar style="margin-top: 5%;" color="dark" [(ngModel)]="citySearch" (keyup.enter)="TemperatureByCity()"></ion-searchbar>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <ion-card style=" height: 350px; width: 80%; border: solid 1px transparent; border-radius: 25px;
+    background-image: url('assets/w1.png')">
+
+      <div style="display: flex; justify-content: center; align-items: center; margin-top: 10%;">
+        <div style="display: block">
+          <img src='https://www.weatherbit.io/static/img/icons/{{city.icon }}.png'>
+          <ion-title style="text-align: center; font-size: 250%; color: black">{{city.temp}}</ion-title>
+        </div>
+      </div>
+
+    <ion-card-content style="position: absolute; bottom: 10px">
+      <ion-card-subtitle class="dark">{{city.country}}</ion-card-subtitle>
+      <ion-card-title  class="dark">{{city.name}}</ion-card-title>
+    </ion-card-content>
+
+    </ion-card>
+  </div>
+
+  <ion-list style="margin-top: 2%;">
+    <ion-item style="text-align: center; color: black">
+      <ion-label>{{city.description}}</ion-label>
+    </ion-item>
+    <ion-item style="text-align: center; color: black" *ngIf="city.maxTemp">
+      <ion-icon name="add-outline"></ion-icon>
+      <ion-label>{{city.maxTemp}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="city.minTemp" style=" color: black">
+      <ion-icon name="remove-outline"></ion-icon>
+      <ion-label style="text-align: center;">{{city.minTemp}}</ion-label>
+    </ion-item>
+    <ion-item style=" color: black">
+      <ion-label style="text-align: center;">{{city.dateTime}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list style=" height: 650px; margin-top: 2%; background-color: white">
+    <ion-item *ngFor="let city of cities" style="color: black;">
+      <div style="text-align: center;">
+      <img src='https://www.weatherbit.io/static/img/icons/{{city.icon }}.png'>
+        <ion-card-subtitle>{{city.dateTime}}</ion-card-subtitle>
+      </div>
+      <div style="width: 50%; margin-left: 10%;">
+        <ion-card-title style="color: black;">{{ city.maxTemp}} - {{city.minTemp}}</ion-card-title>
+        <ion-card-subtitle>{{city.description}}</ion-card-subtitle>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
